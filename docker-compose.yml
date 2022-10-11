@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  spillthebeans:
+    container_name: spillthebeans
+    restart: always
+    build: ./src/app
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    command: gunicorn -w 1 -b :8000 app:server
+  
+  spillthebeans_nginx:
+    container_name: spillthebeans_nginx
+    restart: always
+    build:
+      context: ./src
+      dockerfile: ./nginx/Dockerfile
+    expose:
+      - "8080"
+    ports:
+      - "80:8080"
+    depends_on:
+      - spillthebeans
