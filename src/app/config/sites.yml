@@ -1,0 +1,20 @@
+Wind Turbine Viewer Components:
+  title: Wind Turbine Viewer Components
+  url: https://wtg.viewer.beancandesign.com
+  description: Examples of UI components possibly applicable to wind turbine asset management applications.
+  image: /assets/wtg_view.png
+  button: Visit site
+
+Joint Meshing RestAPI:
+  title: Joint Meshing RestAPI
+  url: https://rest.jointmesh.beancandesign.com
+  description: FastAPI service to produce meshes of offshore structural tubular joints, compatible with DNV RP-C203.
+  image: /assets/joint_mesh_rest.png
+  button: Create meshes
+
+Joint Meshing UI:
+  title: Wind Turbine Viewer Components
+  url: https://viewer.jointmesh.beancandesign.com
+  description: UI and viewer for the Joint Meshing RestAPI service to produce meshes of offshore structural tubular joints, compatible with DNV RP-C203.
+  image: /assets/joint_mesh_viewer.png
+  button: View meshes
