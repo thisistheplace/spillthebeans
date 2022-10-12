@@ -2,6 +2,7 @@ from flask import Flask, make_response
 from flask_restful import Resource, Api
 from pathlib import Path
 
+from ..constants import ASSETS_DIRECTORY
 from ..system.fileutils import read_file
 
 class StaticAsset(Resource):
@@ -16,7 +17,7 @@ class StaticAsset(Resource):
 def add_assets(server: Flask, asset_names: list[str]):
     api = Api(server)
     for name in asset_names:
-        asset_path = Path(f"assets/{name}")
+        asset_path = Path(f"{ASSETS_DIRECTORY}/{name}")
         if not asset_path.resolve().exists():
             raise FileNotFoundError(asset_path.resolve())
         # Dynamically create unique subclass since api.add_resource class must be unique type!

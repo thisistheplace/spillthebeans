@@ -5,11 +5,12 @@ import os
 
 from spillthebeans.layout.spillthebeans import SpillthebeansAIO
 from spillthebeans.server.resources import add_assets
+from spillthebeans.constants import ASSETS_DIRECTORY
 
 server = Flask('my_app')
 app = Dash(server=server, external_stylesheets=[dbc.themes.SIMPLEX])
 
-add_assets(server, [fname for fname in os.listdir("assets") if not fname.startswith(".")])
+add_assets(server, [fname for fname in os.listdir(ASSETS_DIRECTORY) if not fname.startswith(".")])
 
 app.layout = html.Div(
     SpillthebeansAIO(),
