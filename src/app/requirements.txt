@@ -15,8 +15,8 @@ Jinja2==3.1.2
 MarkupSafe==2.1.1
 plotly==5.10.0
 pydantic==1.10.2
-pydantic-yaml==0.8.1
 pytz==2022.4
+PyYAML==6.0
 semver==2.13.0
 six==1.16.0
 spillthebeans-threejs==0.0.2
