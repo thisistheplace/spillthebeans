@@ -33,17 +33,17 @@ class CardAIO(html.Div):
         super().__init__(
             [  # Equivalent to `html.Div([...])`
                 self._parse_card(card)
-            ],
+            ]
         )
 
     @staticmethod
     def _parse_card(card: Card):
         return dbc.Card(
             [
+                dbc.CardHeader(card.title),
                 dbc.CardImg(src=card.image, top=True),
                 dbc.CardBody(
                     [
-                        html.H4(card.title, className="card-title"),
                         html.P(
                             card.description,
                             className="card-text",
@@ -56,6 +56,5 @@ class CardAIO(html.Div):
                         )
                     ]
                 ),
-            ],
-            style={"width": "18rem"},
+            ]
         )

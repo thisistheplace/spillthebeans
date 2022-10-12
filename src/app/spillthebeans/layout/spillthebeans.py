@@ -49,43 +49,71 @@ class SpillthebeansAIO(html.Div):
                         "width": "100%"
                     }
                 ),
-                dbc.Button(
-                    html.I(className="fa-solid fa-chevron-up"),
-                    id=self.ids.sidebar_open(aio_id),
-                    className="me-1 blinkingicon",
-                    outline=True,
-                    size="lg",
-                    n_clicks=0,
+                html.Div(
+                    dbc.Button(
+                        html.Div(
+                            html.I(
+                                className="fa-solid fa-chevron-up"
+                            ),
+                            className="animate__flash"
+                        ),
+                        id=self.ids.sidebar_open(aio_id),
+                        className="me-1",
+                        outline=True,
+                        size="lg",
+                        n_clicks=0,
+                    ),
                     style={
                         "zIndex": "10",
                         "position":"absolute",
                         "display":"block",
                         "bottom": "0px",
                         "margin": "20px",
-                        "animation": "blink 2s ease-in infinite"
                         # "background-color":"transparent"
                     }
                 ),
                 dbc.Offcanvas(
-                    [
+                    dbc.Container(
                         dbc.Row(
-                            [
-                                dbc.Col(
-                                    CardAIO(card=card)
-                                )
-                                for card in cards
-                            ],
-                            style={
-                                "width":"100%"
-                            }
+                            dbc.Col(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            CardAIO(card=card),
+                                            width=12,
+                                            sm=12,
+                                            md=6,
+                                            lg=4
+                                        )
+                                        for card in cards
+                                    ],
+                                    justify="left",
+                                    align="left",
+                                    style={
+                                        "width":"100%",
+                                        "flexFlow": "row",
+                                        "overflowX": "scroll"
+                                    }
+                                ),
+                                width=12,
+                                sm=12,
+                                md=10,
+                                lg=12
+                            ),
+                            justify="center"
                         )
-                    ],
+                    ),
                     id=self.ids.card_row(aio_id),
                     placement="bottom",
                     is_open=False,
                     backdrop=True,
+                    close_button=False,
                     style={
-                        "background-color":"transparent"
+                        "backgroundColor":"transparent",
+                        "borderStyle":"none",
+                        "height":"fit-content",
+                        "maxHeight": "80vh",
+                        "paddingBottom": "20px"
                     }
                 ),
             ],

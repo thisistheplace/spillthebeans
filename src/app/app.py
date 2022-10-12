@@ -14,7 +14,8 @@ add_assets(server, [fname for fname in os.listdir(ASSETS_DIRECTORY) if not fname
 
 app = Dash(server=server, external_stylesheets=[
     dbc.themes.FLATLY,
-    dbc.icons.FONT_AWESOME
+    dbc.icons.FONT_AWESOME,
+    "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 ])
 
 cards = parse_cards(read_yaml(CARD_CONFIG))
