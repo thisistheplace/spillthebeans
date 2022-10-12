@@ -13,7 +13,7 @@ Joint Meshing RestAPI:
   button: Create meshes
 
 Joint Meshing UI:
-  title: Wind Turbine Viewer Components
+  title: Joint Meshing Viewer
   url: https://viewer.jointmesh.beancandesign.com
   description: UI and viewer for the Joint Meshing RestAPI service to produce meshes of offshore structural tubular joints, compatible with DNV RP-C203.
   image: /assets/joint_mesh_viewer.png

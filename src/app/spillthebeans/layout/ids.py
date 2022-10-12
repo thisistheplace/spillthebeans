@@ -19,3 +19,15 @@ class Ids:
         "subcomponent": "card_row",
         "aio_id": aio_id
     }
+
+    card = lambda aio_id: {
+        "component": "CardAIO",
+        "subcomponent": "card",
+        "aio_id": aio_id
+    }
+
+    popover = lambda aio_id: {
+        "component": "CardAIO",
+        "subcomponent": "popover",
+        "aio_id": aio_id
+    }
