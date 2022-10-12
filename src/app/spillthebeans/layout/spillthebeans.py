@@ -37,9 +37,8 @@ class SpillthebeansAIO(html.Div):
                 html.Div(
                     SpillthebeansThreejs(
                         id=self.ids.three(aio_id),
-                        rotation=0.,
-                        maxAngle=math.pi / 0.75,
-                        numBeans=2
+                        canAngle=math.pi * -0.75,
+                        scale=0.25
                     ),
                     style={
                         "zIndex": "5",
