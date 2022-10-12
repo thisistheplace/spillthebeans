@@ -1,20 +1,10 @@
-from dash import Output, Input, State, html, dcc, callback, MATCH, no_update
+from dash import html
 import dash_bootstrap_components as dbc
 import uuid
 
 from .cardtypes import Card
 
 from ..ids import Ids
-from ..toast import make_toast
-
-LOADING_STYLE = {
-    "position": "absolute",
-    "zIndex": "10",
-    "height": "100vh",
-    "width": "100vw",
-    "display": "none",
-    "background": "white",
-}
 
 class CardAIO(html.Div):
     """Class to hold individual panels """
@@ -59,7 +49,7 @@ class CardAIO(html.Div):
                             className="card-text",
                         ),
                         dbc.Button(     
-                            "Take me there...",       
+                            card.button,
                             href=card.url,
                             external_link=True,
                             color="primary"

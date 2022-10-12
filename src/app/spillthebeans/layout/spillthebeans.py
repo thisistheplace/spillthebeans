@@ -1,4 +1,4 @@
-from dash import Output, Input, State, html, dcc, callback, MATCH, no_update
+from dash import Output, Input, html, callback, MATCH
 import dash_bootstrap_components as dbc
 import math
 import uuid
@@ -8,17 +8,6 @@ from spillthebeans.layout.aio.cardtypes import Card
 from spillthebeans.layout.aio.card import CardAIO
 
 from .ids import Ids
-from .toast import make_toast
-
-LOADING_STYLE = {
-    "position": "absolute",
-    "zIndex": "10",
-    "height": "100vh",
-    "width": "100vw",
-    "display": "none",
-    "background": "white",
-}
-
 
 class SpillthebeansAIO(html.Div):
     """Holder for full page layout"""
@@ -45,11 +34,37 @@ class SpillthebeansAIO(html.Div):
         # Define the component's layout
         super().__init__(
             [  # Equivalent to `html.Div([...])`
-                SpillthebeansThreejs(
-                    id=self.ids.three(aio_id),
-                    rotation=0.,
-                    maxAngle=math.pi / 0.75,
-                    numBeans=2
+                html.Div(
+                    SpillthebeansThreejs(
+                        id=self.ids.three(aio_id),
+                        rotation=0.,
+                        maxAngle=math.pi / 0.75,
+                        numBeans=2
+                    ),
+                    style={
+                        "zIndex": "5",
+                        "position":"absolute",
+                        "display":"block",
+                        "height": "100%",
+                        "width": "100%"
+                    }
+                ),
+                dbc.Button(
+                    html.I(className="fa-solid fa-chevron-up"),
+                    id=self.ids.sidebar_open(aio_id),
+                    className="me-1 blinkingicon",
+                    outline=True,
+                    size="lg",
+                    n_clicks=0,
+                    style={
+                        "zIndex": "10",
+                        "position":"absolute",
+                        "display":"block",
+                        "bottom": "0px",
+                        "margin": "20px",
+                        "animation": "blink 2s ease-in infinite"
+                        # "background-color":"transparent"
+                    }
                 ),
                 dbc.Offcanvas(
                     [
@@ -65,8 +80,9 @@ class SpillthebeansAIO(html.Div):
                             }
                         )
                     ],
+                    id=self.ids.card_row(aio_id),
                     placement="bottom",
-                    is_open=True,
+                    is_open=False,
                     backdrop=True,
                     style={
                         "background-color":"transparent"
@@ -75,3 +91,11 @@ class SpillthebeansAIO(html.Div):
             ],
             style={"height": "100vh", "width": "100vw"},
         )
+
+    @callback(
+        Output(ids.card_row(MATCH), "is_open"),
+        Input(ids.sidebar_open(MATCH), "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def toggle_collapse(n_open):
+        return True
