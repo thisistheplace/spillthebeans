@@ -1,11 +1,11 @@
 from dash import Output, Input, State, html, dcc, callback, MATCH, no_update
 import dash_bootstrap_components as dbc
 import math
+import uuid
 
 from spillthebeans_threejs import SpillthebeansThreejs
-
-import asyncio
-import uuid
+from spillthebeans.layout.aio.cardtypes import Card
+from spillthebeans.layout.aio.card import CardAIO
 
 from .ids import Ids
 from .toast import make_toast
@@ -30,7 +30,7 @@ class SpillthebeansAIO(html.Div):
     def __init__(
         self,
         aio_id: str | None = None,
-        cards: list[int] | None = None
+        cards: list[Card] | None = None
     ):
         """SpillthebeansAIO is an All-In-One component which holds a threejs rendering and website cards
 
@@ -51,10 +51,27 @@ class SpillthebeansAIO(html.Div):
                     maxAngle=math.pi / 0.75,
                     numBeans=2
                 ),
+                dbc.Offcanvas(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    CardAIO(card=card)
+                                )
+                                for card in cards
+                            ],
+                            style={
+                                "width":"100%"
+                            }
+                        )
+                    ],
+                    placement="bottom",
+                    is_open=True,
+                    backdrop=True,
+                    style={
+                        "background-color":"transparent"
+                    }
+                ),
             ],
             style={"height": "100vh", "width": "100vw"},
         )
-
-    # Define this component's stateless pattern-matching callback
-    # that will apply to every instance of this component.
-    

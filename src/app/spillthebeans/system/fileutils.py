@@ -8,7 +8,7 @@ def read_file(fpath: str) -> bytes:
         fbytes = f.read()
     return fbytes
 
-def load_yaml(fpath: str) -> dict:
+def read_yaml(fpath: str) -> dict:
     resolved = Path(fpath).resolve()
     with open(resolved, "r") as f:
         yaml_dict = yaml.load(f, Loader)
