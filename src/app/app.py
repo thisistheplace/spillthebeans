@@ -12,11 +12,15 @@ from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 server = Flask('my_app')
 add_assets(server, [fname for fname in os.listdir(ASSETS_DIRECTORY) if not fname.startswith(".")])
 
-app = Dash(server=server, external_stylesheets=[
-    dbc.themes.FLATLY,
-    dbc.icons.FONT_AWESOME,
-    "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-])
+app = Dash(
+    server=server,
+    external_stylesheets=[
+        dbc.themes.FLATLY,
+        dbc.icons.FONT_AWESOME,
+        "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    ],
+    title="spillthebeans"
+)
 
 cards = parse_cards(read_yaml(CARD_CONFIG))
 
