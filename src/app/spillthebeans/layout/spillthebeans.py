@@ -9,6 +9,7 @@ from spillthebeans.layout.aio.card import CardAIO
 
 from .ids import Ids
 
+
 class SpillthebeansAIO(html.Div):
     """Holder for full page layout"""
 
@@ -16,15 +17,11 @@ class SpillthebeansAIO(html.Div):
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(
-        self,
-        aio_id: str | None = None,
-        cards: list[Card] | None = None
-    ):
+    def __init__(self, aio_id: str | None = None, cards: list[Card] | None = None):
         """SpillthebeansAIO is an All-In-One component which holds a threejs rendering and website cards
 
         Args:
-            cards: list of 
+            cards: list of
             generate_mesh: asyncronous callback to generate mesh from options string
         """
 
@@ -36,25 +33,21 @@ class SpillthebeansAIO(html.Div):
             [  # Equivalent to `html.Div([...])`
                 html.Div(
                     SpillthebeansThreejs(
-                        id=self.ids.three(aio_id),
-                        canAngle=math.pi * -0.75,
-                        scale=0.075
+                        id=self.ids.three(aio_id), canAngle=math.pi * -0.75, scale=0.075
                     ),
                     style={
                         "zIndex": "5",
-                        "position":"absolute",
-                        "display":"block",
+                        "position": "absolute",
+                        "display": "block",
                         "height": "100%",
-                        "width": "100%"
-                    }
+                        "width": "100%",
+                    },
                 ),
                 html.Div(
                     dbc.Button(
                         html.Div(
-                            html.I(
-                                className="fa-solid fa-chevron-up"
-                            ),
-                            className="animate__flash"
+                            html.I(className="fa-solid fa-chevron-up"),
+                            className="animate__flash",
                         ),
                         id=self.ids.sidebar_open(aio_id),
                         className="me-1",
@@ -64,11 +57,11 @@ class SpillthebeansAIO(html.Div):
                     ),
                     style={
                         "zIndex": "10",
-                        "position":"absolute",
-                        "display":"block",
+                        "position": "absolute",
+                        "display": "block",
                         "bottom": "0px",
                         "margin": "20px",
-                    }
+                    },
                 ),
                 dbc.Tooltip(
                     "portfolio",
@@ -77,16 +70,13 @@ class SpillthebeansAIO(html.Div):
                     target=self.ids.sidebar_open(aio_id),
                     placement="top",
                     fade=True,
-                    delay={"show":5000}
+                    delay={"show": 5000},
                 ),
                 html.Div(
                     dbc.Button(
                         html.Img(
                             src="/assets/GitHub-Mark-32px.png",
-                            style={
-                                "height":"32px",
-                                "width":"32px"
-                            }
+                            style={"height": "32px", "width": "32px"},
                         ),
                         href="https://github.com/thisistheplace",
                         external_link=True,
@@ -96,18 +86,16 @@ class SpillthebeansAIO(html.Div):
                     ),
                     style={
                         "zIndex": "10",
-                        "position":"absolute",
-                        "display":"block",
+                        "position": "absolute",
+                        "display": "block",
                         "top": "0px",
                         "right": "0px",
-                        "margin": "20px"
-                    }
+                        "margin": "20px",
+                    },
                 ),
                 html.Div(
                     dbc.Button(
-                        html.I(
-                            className="fa-solid fa-envelope"
-                        ),
+                        html.I(className="fa-solid fa-envelope"),
                         href="mailto:bean.can.design@gmail.com",
                         external_link=True,
                         outline=True,
@@ -116,12 +104,12 @@ class SpillthebeansAIO(html.Div):
                     ),
                     style={
                         "zIndex": "10",
-                        "position":"absolute",
-                        "display":"block",
+                        "position": "absolute",
+                        "display": "block",
                         "top": "0px",
                         "left": "0px",
-                        "margin": "20px"
-                    }
+                        "margin": "20px",
+                    },
                 ),
                 dbc.Offcanvas(
                     dbc.Container(
@@ -134,24 +122,24 @@ class SpillthebeansAIO(html.Div):
                                             width=12,
                                             sm=12,
                                             md=6,
-                                            lg=4
+                                            lg=4,
                                         )
                                         for card in cards
                                     ],
                                     justify="left",
                                     align="left",
                                     style={
-                                        "width":"100%",
+                                        "width": "100%",
                                         "flexFlow": "row",
-                                        "overflowX": "scroll"
-                                    }
+                                        "overflowX": "scroll",
+                                    },
                                 ),
                                 width=12,
                                 sm=12,
                                 md=10,
-                                lg=12
+                                lg=12,
                             ),
-                            justify="center"
+                            justify="center",
                         )
                     ),
                     id=self.ids.card_row(aio_id),
@@ -160,12 +148,12 @@ class SpillthebeansAIO(html.Div):
                     backdrop=True,
                     close_button=False,
                     style={
-                        "backgroundColor":"transparent",
-                        "borderStyle":"none",
-                        "height":"fit-content",
+                        "backgroundColor": "transparent",
+                        "borderStyle": "none",
+                        "height": "fit-content",
                         "maxHeight": "80vh",
-                        "paddingBottom": "20px"
-                    }
+                        "paddingBottom": "20px",
+                    },
                 ),
             ],
             style={"height": "100vh", "width": "100vw"},

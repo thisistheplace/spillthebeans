@@ -6,18 +6,15 @@ from .cardtypes import Card
 
 from ..ids import Ids
 
+
 class CardAIO(html.Div):
-    """Class to hold individual panels """
+    """Class to hold individual panels"""
 
     # Make the ids class a public class
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(
-        self,
-        aio_id: str | None = None,
-        card: Card | None = None
-    ):
+    def __init__(self, aio_id: str | None = None, card: Card | None = None):
         """CardAIO is an All-In-One component which lays out a Card type
 
         Args:
@@ -25,24 +22,21 @@ class CardAIO(html.Div):
         """
         if aio_id is None:
             aio_id = str(uuid.uuid4())
-        
+
         if card is None:
             raise ValueError("Attribute 'card' must not be None")
 
         # Define the component's layout
         super().__init__(
             [  # Equivalent to `html.Div([...])`
-                self._parse_card(
-                    self.ids.card(aio_id),
-                    card
-                ),
+                self._parse_card(self.ids.card(aio_id), card),
                 dbc.Popover(
                     id=self.ids.popover(aio_id),
                     target=self.ids.card(aio_id),
                     body=False,
                     trigger="hover",
-                    hide_arrow=True
-                )
+                    hide_arrow=True,
+                ),
             ]
         )
 
@@ -58,18 +52,18 @@ class CardAIO(html.Div):
                             card.description,
                             className="card-text",
                         ),
-                        dbc.Button(     
+                        dbc.Button(
                             card.button,
                             href=card.url,
                             external_link=True,
-                            color="primary"
-                        )
+                            color="primary",
+                        ),
                     ]
                 ),
             ],
-            id=id
+            id=id,
         )
-    
+
     @callback(
         Output(ids.card(MATCH), "style"),
         Input(ids.popover(MATCH), "is_open"),
@@ -77,6 +71,6 @@ class CardAIO(html.Div):
     )
     def mouseover_card(is_open):
         if is_open:
-            return {"border":"1px solid rgba(0,0,0)"}
+            return {"border": "1px solid rgba(0,0,0)"}
         else:
-            return {"border":"1px solid rgba(0,0,0,.125)"}
+            return {"border": "1px solid rgba(0,0,0,.125)"}
