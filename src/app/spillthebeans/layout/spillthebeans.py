@@ -38,7 +38,7 @@ class SpillthebeansAIO(html.Div):
                     SpillthebeansThreejs(
                         id=self.ids.three(aio_id),
                         canAngle=math.pi * -0.75,
-                        scale=0.25
+                        scale=0.075
                     ),
                     style={
                         "zIndex": "5",
@@ -70,6 +70,13 @@ class SpillthebeansAIO(html.Div):
                         "margin": "20px",
                     }
                 ),
+                dbc.Tooltip(
+                    "portfolio",
+                    id="tooltip",
+                    is_open=True,
+                    target=self.ids.sidebar_open(aio_id),
+                    placement="top"
+                ),
                 html.Div(
                     dbc.Button(
                         html.Img(
@@ -91,6 +98,26 @@ class SpillthebeansAIO(html.Div):
                         "display":"block",
                         "top": "0px",
                         "right": "0px",
+                        "margin": "20px"
+                    }
+                ),
+                html.Div(
+                    dbc.Button(
+                        html.I(
+                            className="fa-solid fa-envelope"
+                        ),
+                        href="mailto:bean.can.design@gmail.com",
+                        external_link=True,
+                        outline=True,
+                        size="lg",
+                        n_clicks=0,
+                    ),
+                    style={
+                        "zIndex": "10",
+                        "position":"absolute",
+                        "display":"block",
+                        "top": "0px",
+                        "left": "0px",
                         "margin": "20px"
                     }
                 ),
