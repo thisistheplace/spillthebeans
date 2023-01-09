@@ -14,7 +14,7 @@ class CardAIO(html.Div):
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(self, aio_id: str | None = None, card: Card | None = None):
+    def __init__(self, aio_id: str | None = None, card: Card | None = None, **kwargs):
         """CardAIO is an All-In-One component which lays out a Card type
 
         Args:
@@ -37,7 +37,8 @@ class CardAIO(html.Div):
                     trigger="hover",
                     hide_arrow=True,
                 ),
-            ]
+            ],
+            **kwargs
         )
 
     @staticmethod

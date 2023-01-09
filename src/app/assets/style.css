@@ -1,0 +1,16 @@
+.portfolio-card {
+    width: 30% !important;
+    margin: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .portfolio-card {
+        width: 40% !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .portfolio-card {
+        width: 100% !important;
+    }
+}

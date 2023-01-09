@@ -78,33 +78,16 @@ class SpillthebeansAIO(html.Div):
                 dbc.Offcanvas(
                     dbc.Container(
                         dbc.Row(
-                            dbc.Col(
-                                dbc.Row(
-                                    [
-                                        dbc.Col(
-                                            CardAIO(card=card),
-                                            width=12,
-                                            sm=12,
-                                            md=6,
-                                            lg=4,
-                                        )
-                                        for card in cards
-                                    ],
-                                    justify="left",
-                                    align="left",
-                                    style={
-                                        "width": "100%",
-                                        "flexFlow": "row",
-                                        "overflowX": "scroll",
-                                    },
-                                ),
-                                width=12,
-                                sm=12,
-                                md=10,
-                                lg=12,
-                            ),
+                            card_rows(cards),
+                            # dbc.Col(
+                            #     card_rows(cards),
+                            #     align="center"
+                            # ),
+                            align="center",
                             justify="center",
-                        )
+                            style={"width": "100%"}
+                        ),
+                        fluid=True
                     ),
                     id=self.ids.card_row(aio_id),
                     placement="bottom",
@@ -130,3 +113,19 @@ class SpillthebeansAIO(html.Div):
     )
     def toggle_collapse(n_open):
         return True
+
+
+def card_rows(cards):
+    return [
+        dbc.Row(
+            [
+                CardAIO(card=card, className="portfolio-card", style={"margin": "10px"})
+                for card in cards
+            ],
+            justify="center",
+            style={
+                "width": "100%",
+                "flexFlow": "row wrap"
+            },
+        )
+    ]

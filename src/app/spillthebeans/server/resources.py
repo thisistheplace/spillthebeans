@@ -7,12 +7,15 @@ from ..system.fileutils import read_file
 
 
 class StaticAsset(Resource):
-    def __init__(self, path):
+    def __init__(self, path: Path):
         self._path = path
 
     def get(self):
         response = make_response(read_file(self._path))
-        response.headers["content-type"] = "application/text"
+        if self._path.suffix == ".css":
+            response.headers["content-type"] = "text/css"
+        else:
+            response.headers["content-type"] = "application/text"
         return response
 
 
