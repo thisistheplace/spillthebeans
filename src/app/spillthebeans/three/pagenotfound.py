@@ -1,20 +1,21 @@
-from dash import html
+from dash import html, dcc
 import uuid
 
-from moon_threejs import MoonThreejs
+from pagenotfound_threejs import PagenotfoundThreejs
 
 from .ids import Ids
 
 from spillthebeans.layout.socials import home
 
-class MoonAIO(html.Div):
+
+class PagenotfoundThreejsAIO(html.Div):
     """Holder for full page layout"""
 
     # Make the ids class a public class
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(self, aio_id: str | None = None, radius=500, ntrees=2, nforests=3, height=8):
+    def __init__(self, aio_id: str | None = None, radius=500):
         """MoonAIO is an All-In-One component which holds a threejs rendering of a moon"""
 
         if aio_id is None:
@@ -23,12 +24,23 @@ class MoonAIO(html.Div):
         # Define the component's layout
         super().__init__(
             [  # Equivalent to `html.Div([...])`
-                MoonThreejs(id="aio_id", radius=radius, ntrees=ntrees, nforests=nforests, height=height),
+                PagenotfoundThreejs(id=aio_id),
                 home(),
                 html.Div(
                     children=[
-                        html.H1("lonely moon"),
-                        html.H4("gpu rendered fractal trees using threejs"),
+                        html.H1("404 - page not found"),
+                        html.Div(
+                            children=[
+                                html.Div(
+                                    "Model by", style={"display": "inline-block"}
+                                ),
+                                dcc.Link(
+                                    "Tomas Lauhle",
+                                    href="https://www.patreon.com/quaternius",
+                                    style={"display": "inline-block", "margin-left": "5px"},
+                                ),
+                            ]
+                        ),
                     ],
                     style={
                         "zIndex": "10",

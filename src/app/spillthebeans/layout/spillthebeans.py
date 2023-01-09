@@ -6,6 +6,7 @@ import uuid
 from spillthebeans_threejs import SpillthebeansThreejs
 from spillthebeans.layout.aio.cardtypes import Card
 from spillthebeans.layout.aio.card import CardAIO
+from spillthebeans.layout.socials import mail, github
 
 from .ids import Ids
 
@@ -72,45 +73,8 @@ class SpillthebeansAIO(html.Div):
                     fade=True,
                     delay={"show": 5000},
                 ),
-                html.Div(
-                    dbc.Button(
-                        html.Img(
-                            src="/assets/GitHub-Mark-32px.png",
-                            style={"height": "32px", "width": "32px"},
-                        ),
-                        href="https://github.com/thisistheplace",
-                        external_link=True,
-                        outline=True,
-                        size="lg",
-                        n_clicks=0,
-                    ),
-                    style={
-                        "zIndex": "10",
-                        "position": "absolute",
-                        "display": "block",
-                        "top": "0px",
-                        "right": "0px",
-                        "margin": "20px",
-                    },
-                ),
-                html.Div(
-                    dbc.Button(
-                        html.I(className="fa-solid fa-envelope"),
-                        href="mailto:bean.can.design@gmail.com",
-                        external_link=True,
-                        outline=True,
-                        size="lg",
-                        n_clicks=0,
-                    ),
-                    style={
-                        "zIndex": "10",
-                        "position": "absolute",
-                        "display": "block",
-                        "top": "0px",
-                        "left": "0px",
-                        "margin": "20px",
-                    },
-                ),
+                github(),
+                mail(),
                 dbc.Offcanvas(
                     dbc.Container(
                         dbc.Row(

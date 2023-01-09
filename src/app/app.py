@@ -9,6 +9,7 @@ from spillthebeans.server.resources import add_assets
 from spillthebeans.system.fileutils import read_yaml
 from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 from spillthebeans.three.moon import MoonAIO
+from spillthebeans.three.pagenotfound import PagenotfoundThreejsAIO
 
 
 server = Flask("spillthebeans-server")
@@ -40,9 +41,12 @@ def display_page(pathname):
     if pathname == "/":
         return SpillthebeansAIO(cards=cards)
     elif pathname == "/moon":
-        return MoonAIO()
+        return MoonAIO(
+            ntrees=2000,
+            nforests=4
+        )
     else:
-        return "404"
+        return PagenotfoundThreejsAIO()
 
 
 if __name__ == "__main__":

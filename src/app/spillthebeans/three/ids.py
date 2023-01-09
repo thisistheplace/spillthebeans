@@ -7,3 +7,10 @@ class Ids:
         "subcomponent": "moon",
         "aio_id": aio_id,
     }
+
+    # PagenotfoundThreejs
+    moon = lambda aio_id: {
+        "component": "PagenotfoundThreejsAIO",
+        "subcomponent": "PagenotfoundThreejs",
+        "aio_id": aio_id,
+    }
