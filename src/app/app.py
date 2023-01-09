@@ -11,7 +11,7 @@ from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 from spillthebeans.three.moon import MoonAIO
 
 
-server = Flask("spillthebeans")
+server = Flask("spillthebeans-server")
 add_assets(
     server,
     [fname for fname in os.listdir(ASSETS_DIRECTORY) if not fname.startswith(".")],
