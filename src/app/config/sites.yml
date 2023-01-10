@@ -1,5 +1,12 @@
-Threejs Demos:
-  title: Threejs Creations
+Threejs demos - mountains:
+  title: Threejs demos - mountains
+  url: https://beancandesign.com/forest
+  description: Interactive animations generated using threejs, rendering in the browser.
+  image: /assets/forest.png
+  button: Explore
+
+Threejs demos - moon:
+  title: Threejs demos - moon
   url: https://beancandesign.com/moon
   description: Interactive animations generated using threejs, rendering in the browser.
   image: /assets/moon.png

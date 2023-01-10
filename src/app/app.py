@@ -48,10 +48,10 @@ def display_page(pathname):
         )
     elif pathname == "/forest":
         return ForestAIO(
-            totalX=5,
-            totalZ=5,
+            totalX=100,
+            totalZ=100,
             spacing=60,
-            stats=False
+            stats=True
         )
     else:
         return PagenotfoundThreejsAIO()
