@@ -9,6 +9,7 @@ from spillthebeans.server.resources import add_assets
 from spillthebeans.system.fileutils import read_yaml
 from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 from spillthebeans.three.moon import MoonAIO
+from spillthebeans.three.forest import ForestAIO
 from spillthebeans.three.pagenotfound import PagenotfoundThreejsAIO
 
 
@@ -44,6 +45,13 @@ def display_page(pathname):
         return MoonAIO(
             ntrees=2000,
             nforests=4
+        )
+    elif pathname == "/forest":
+        return ForestAIO(
+            totalX=5,
+            totalZ=5,
+            spacing=60,
+            stats=False
         )
     else:
         return PagenotfoundThreejsAIO()
