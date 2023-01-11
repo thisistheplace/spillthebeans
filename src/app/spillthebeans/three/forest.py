@@ -41,9 +41,9 @@ class ForestAIO(html.Div):
                 home(),
                 html.Div(
                     children=[
-                        html.H1("forest growth"),
+                        html.H1("forest"),
                         html.H4(
-                            "tree instancedmeshes positioned on landscape using raycasting"
+                            "tree instanced meshes positioned on landscape using raycasting"
                         ),
                     ],
                     style={
