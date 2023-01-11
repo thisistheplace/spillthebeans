@@ -1,34 +1,39 @@
 Threejs demos - mountains:
-  title: Threejs demos - mountains
+  title: Mountains - threejs demo
   url: https://beancandesign.com/forest
-  description: Interactive animations generated using threejs, rendering in the browser.
+  description: Animation rendering in the browser using threejs / WebGL
   image: /assets/forest.png
-  button: Explore
+  button: visit
+  github: https://github.com/thisistheplace/forest-threejs
 
 Threejs demos - moon:
-  title: Threejs demos - moon
+  title: Moon - threejs demo
   url: https://beancandesign.com/moon
-  description: Interactive animations generated using threejs, rendering in the browser.
+  description: Animation rendering in the browser using threejs / WebGL
   image: /assets/moon.png
-  button: Explore
+  button: visit
+  github: https://github.com/thisistheplace/moon-threejs
 
 Wind Turbine Viewer Components:
   title: Wind Turbine Viewer Components
   url: https://wtg.viewer.beancandesign.com
   description: Examples of UI components possibly applicable to wind turbine asset management applications.
   image: /assets/wtg_view.png
-  button: Visit site
+  button: visit
+  github: https://github.com/thisistheplace/wtg_view
 
 Joint Meshing RestAPI:
   title: Joint Meshing RestAPI
   url: https://rest.jointmesh.beancandesign.com
   description: FastAPI service to produce meshes of offshore structural tubular joints, compatible with DNV RP-C203.
   image: /assets/joint_mesh_rest.png
-  button: Create meshes
+  button: visit
+  github: https://github.com/thisistheplace/joint_model
 
 Joint Meshing UI:
   title: Joint Meshing Viewer
   url: https://viewer.jointmesh.beancandesign.com
   description: UI and viewer for the Joint Meshing RestAPI service to produce meshes of offshore structural tubular joints, compatible with DNV RP-C203.
   image: /assets/joint_mesh_viewer.png
-  button: View meshes
+  button: visit
+  github: https://github.com/thisistheplace/joint_model

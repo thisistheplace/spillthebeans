@@ -1,6 +1,7 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+
 def home():
     return html.Div(
         dbc.Button(
@@ -21,6 +22,7 @@ def home():
         },
     )
 
+
 def mail():
     return html.Div(
         dbc.Button(
@@ -40,6 +42,7 @@ def mail():
             "margin": "20px",
         },
     )
+
 
 def github(href="https://github.com/thisistheplace"):
     return html.Div(

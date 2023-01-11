@@ -42,17 +42,9 @@ def display_page(pathname):
     if pathname == "/":
         return SpillthebeansAIO(cards=cards)
     elif pathname == "/moon":
-        return MoonAIO(
-            ntrees=2000,
-            nforests=4
-        )
+        return MoonAIO(ntrees=2000, nforests=4)
     elif pathname == "/forest":
-        return ForestAIO(
-            totalX=100,
-            totalZ=100,
-            spacing=60,
-            stats=True
-        )
+        return ForestAIO(totalX=125, totalZ=125, spacing=20, stats=False)
     else:
         return PagenotfoundThreejsAIO()
 

@@ -79,15 +79,11 @@ class SpillthebeansAIO(html.Div):
                     dbc.Container(
                         dbc.Row(
                             card_rows(cards),
-                            # dbc.Col(
-                            #     card_rows(cards),
-                            #     align="center"
-                            # ),
                             align="center",
                             justify="center",
-                            style={"width": "100%"}
+                            style={"width": "100%"},
                         ),
-                        fluid=True
+                        fluid=True,
                     ),
                     id=self.ids.card_row(aio_id),
                     placement="bottom",
@@ -123,9 +119,6 @@ def card_rows(cards):
                 for card in cards
             ],
             justify="center",
-            style={
-                "width": "100%",
-                "flexFlow": "row wrap"
-            },
+            style={"width": "100%", "flexFlow": "row wrap"},
         )
     ]

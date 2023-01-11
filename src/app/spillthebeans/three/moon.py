@@ -7,6 +7,7 @@ from .ids import Ids
 
 from spillthebeans.layout.socials import home
 
+
 class MoonAIO(html.Div):
     """Holder for full page layout"""
 
@@ -14,7 +15,9 @@ class MoonAIO(html.Div):
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(self, aio_id: str | None = None, radius=500, ntrees=2, nforests=3, height=8):
+    def __init__(
+        self, aio_id: str | None = None, radius=500, ntrees=2, nforests=3, height=8
+    ):
         """MoonAIO is an All-In-One component which holds a threejs rendering of a moon"""
 
         if aio_id is None:
@@ -23,7 +26,13 @@ class MoonAIO(html.Div):
         # Define the component's layout
         super().__init__(
             [  # Equivalent to `html.Div([...])`
-                MoonThreejs(id="aio_id", radius=radius, ntrees=ntrees, nforests=nforests, height=height),
+                MoonThreejs(
+                    id="aio_id",
+                    radius=radius,
+                    ntrees=ntrees,
+                    nforests=nforests,
+                    height=height,
+                ),
                 home(),
                 html.Div(
                     children=[

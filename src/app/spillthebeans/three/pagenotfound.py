@@ -31,13 +31,14 @@ class PagenotfoundThreejsAIO(html.Div):
                         html.H1("404 - page not found"),
                         html.Div(
                             children=[
-                                html.Div(
-                                    "Model by", style={"display": "inline-block"}
-                                ),
+                                html.Div("Model by", style={"display": "inline-block"}),
                                 dcc.Link(
                                     "Tomas Lauhle",
                                     href="https://www.patreon.com/quaternius",
-                                    style={"display": "inline-block", "margin-left": "5px"},
+                                    style={
+                                        "display": "inline-block",
+                                        "margin-left": "5px",
+                                    },
                                 ),
                             ]
                         ),

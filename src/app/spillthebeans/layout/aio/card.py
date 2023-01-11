@@ -45,7 +45,32 @@ class CardAIO(html.Div):
     def _parse_card(id, card: Card):
         return dbc.Card(
             [
-                dbc.CardHeader(card.title),
+                dbc.CardHeader(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(card.title, width=9, align="center"),
+                                dbc.Col(
+                                    dbc.Button(
+                                        html.Img(
+                                            src="/assets/GitHub-Mark-32px.png",
+                                            style={
+                                                "height": "32px",
+                                                "width": "32px",
+                                            },
+                                        ),
+                                        href=card.github,
+                                        external_link=True,
+                                        outline=True,
+                                        size="lg",
+                                        n_clicks=0,
+                                    ),
+                                    width=3,
+                                ),
+                            ]
+                        )
+                    ]
+                ),
                 dbc.CardImg(src=card.image, top=True),
                 dbc.CardBody(
                     [
@@ -58,6 +83,7 @@ class CardAIO(html.Div):
                             href=card.url,
                             external_link=True,
                             color="primary",
+                            style={"width": "100%"},
                         ),
                     ]
                 ),
