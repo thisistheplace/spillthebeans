@@ -10,6 +10,7 @@ from spillthebeans.system.fileutils import read_yaml
 from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 from spillthebeans.three.moon import MoonAIO
 from spillthebeans.three.forest import ForestAIO
+from spillthebeans.three.label import LabelAIO
 from spillthebeans.three.pagenotfound import PagenotfoundThreejsAIO
 
 
@@ -45,6 +46,8 @@ def display_page(pathname):
         return MoonAIO(ntrees=2000, nforests=4)
     elif pathname == "/forest":
         return ForestAIO(totalX=125, totalZ=125, spacing=20, stats=False)
+    elif pathname == "/label":
+        return LabelAIO()
     else:
         return PagenotfoundThreejsAIO()
 
