@@ -1,3 +1,11 @@
+Threejs demos - wind farm:
+  title: Wind farm - threejs demo
+  url: https://beancandesign.com/wind
+  description: Wind farm rendering in the browser using threejs / WebGL
+  image: /assets/wind.png
+  button: visit
+  github: https://github.com/thisistheplace/dash-wtgviewer
+
 Threejs demos - mountains:
   title: Mountains - threejs demo
   url: https://beancandesign.com/forest

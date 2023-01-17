@@ -1,6 +1,7 @@
 from dash import Dash, html, callback, Input, Output, dcc
 import dash_bootstrap_components as dbc
 from flask import Flask
+import json
 import os
 
 from spillthebeans.layout.spillthebeans import SpillthebeansAIO
@@ -11,6 +12,7 @@ from spillthebeans.constants import ASSETS_DIRECTORY, CARD_CONFIG
 from spillthebeans.three.moon import MoonAIO
 from spillthebeans.three.forest import ForestAIO
 from spillthebeans.three.label import LabelAIO
+from spillthebeans.three.wind import WtgviewerAIO
 from spillthebeans.three.pagenotfound import PagenotfoundThreejsAIO
 
 
@@ -48,6 +50,10 @@ def display_page(pathname):
         return ForestAIO(totalX=125, totalZ=125, spacing=20, stats=False)
     elif pathname == "/label":
         return LabelAIO()
+    elif pathname == "/wind":
+        return WtgviewerAIO(
+            model=json.load(open("assets/models/windturbine.json", "r"))
+        )
     else:
         return PagenotfoundThreejsAIO()
 
