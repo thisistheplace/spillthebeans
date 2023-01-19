@@ -1,4 +1,5 @@
-from dash import html
+from dash import html, callback, Input, Output, MATCH, State, no_update
+import dash_bootstrap_components as dbc
 import uuid
 
 from dash_wtgviewer import DashWtgviewer
@@ -16,7 +17,7 @@ class WtgviewerAIO(html.Div):
 
     # Define the arguments of the All-in-One component
     def __init__(
-        self, model, aio_id: str | None = None, tooltip=False,sea=True
+        self, model, map, aio_id: str | None = None, tooltip=False, sea=True, show_map=True
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 
@@ -28,10 +29,12 @@ class WtgviewerAIO(html.Div):
             [  # Equivalent to `html.Div([...])`
                 html.Div(
                     DashWtgviewer(
-                        id=aio_id,
+                        id=self.ids.wind(aio_id),
                         tooltip=tooltip,
                         sea=sea,
-                        model=model
+                        model=model,
+                        map=map,
+                        show_map=show_map
                     ),
                     style={
                         "width":"100vw",
@@ -53,6 +56,46 @@ class WtgviewerAIO(html.Div):
                         "display": "block",
                     },
                 ),
+                html.Div(
+                    dbc.Switch(
+                        id=self.ids.map_toggle(aio_id),
+                        label="View map",
+                        value=True,
+                    ),
+                    style={
+                        "zIndex": "100",
+                        "right": "0px",
+                        "top": "0px",
+                        "margin": "20px",
+                        "position": "absolute",
+                        "display": "block",
+                    },
+                )
             ],
             style={"height": "100vh", "width": "100vw"},
         )
+
+
+    @callback(
+        Output(ids.wind(MATCH), "show_map"),
+        Input(ids.map_toggle(MATCH), "value"),
+        State(ids.wind(MATCH), "show_map"),
+        prevent_initial_call=True,
+    )
+    def toggle_map(toggle, show_map):
+        if show_map != toggle:
+            return toggle
+        else:
+            return no_update
+
+    @callback(
+        Output(ids.map_toggle(MATCH), "value"),
+        Input(ids.wind(MATCH), "show_map"),
+        State(ids.map_toggle(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def monitor_map(show_map, toggle):
+        if show_map != toggle:
+            return show_map
+        else:
+            return no_update
