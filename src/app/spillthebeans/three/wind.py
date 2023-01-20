@@ -17,7 +17,7 @@ class WtgviewerAIO(html.Div):
 
     # Define the arguments of the All-in-One component
     def __init__(
-        self, model, map, aio_id: str | None = None, tooltip=False, sea=True, show_map=True
+        self, model, map, aio_id: str | None = None, tooltip=True, sea=True, show_map=True
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 

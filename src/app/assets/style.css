@@ -33,3 +33,14 @@
     visibility:visible;
 
 }
+
+.modelTooltip {
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    position: absolute;
+    font-family: Verdana;
+    z-index: 2;
+    text-align: right;
+    padding: 20px;
+}
