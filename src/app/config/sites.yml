@@ -2,7 +2,7 @@ Threejs demos - wind farm:
   title: Wind farm - threejs demo
   url: https://beancandesign.com/wind
   description: Wind farm rendering in the browser using threejs / WebGL
-  image: /assets/wind.png
+  image: /assets/wind.gif
   button: visit
   github: https://github.com/thisistheplace/dash-wtgviewer
 

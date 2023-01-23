@@ -13,7 +13,7 @@ def make_toast(id: str, children: object, header: str, open=True, icon="primary"
         # top: 66 positions the toast below the navbar
         style={
             "position": "fixed",
-            "top": 66,
+            "top": 10,
             "right": 10,
             "width": 350,
             "zIndex": 1000,
