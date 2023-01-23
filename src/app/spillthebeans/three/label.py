@@ -13,9 +13,7 @@ class LabelAIO(html.Div):
     ids = Ids
 
     # Define the arguments of the All-in-One component
-    def __init__(
-        self, aio_id: str | None = None
-    ):
+    def __init__(self, aio_id: str | None = None):
         """LabelAIO is an All-In-One component which holds a threejs rendering of a BeanCanDesign can label"""
 
         if aio_id is None:
@@ -30,14 +28,14 @@ class LabelAIO(html.Div):
                         html.Header("design"),
                     ],
                     style={
-                        'fontSize': '150px',
+                        "fontSize": "150px",
                         "zIndex": "10",
                         "left": "0px",
                         "bottom": "0px",
                         "margin": "200px",
                         "position": "absolute",
                         "display": "block",
-                        "transform": "rotate(-90deg)"
+                        "transform": "rotate(-90deg)",
                     },
                 ),
             ],

@@ -44,7 +44,17 @@ def mail():
     )
 
 
-def github(href="https://github.com/thisistheplace"):
+def github(
+    href="https://github.com/thisistheplace",
+    style={
+        "zIndex": "10",
+        "position": "absolute",
+        "display": "block",
+        "top": "0px",
+        "right": "0px",
+        "margin": "20px",
+    },
+):
     return html.Div(
         dbc.Button(
             html.Img(
@@ -57,12 +67,5 @@ def github(href="https://github.com/thisistheplace"):
             size="lg",
             n_clicks=0,
         ),
-        style={
-            "zIndex": "10",
-            "position": "absolute",
-            "display": "block",
-            "top": "0px",
-            "right": "0px",
-            "margin": "20px",
-        },
+        style=style,
     )

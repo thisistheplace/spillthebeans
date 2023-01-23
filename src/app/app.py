@@ -25,17 +25,17 @@ add_assets(
 # external CSS stylesheets for Leaflet.js
 leaflet_external_stylesheets = [
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.css',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=',
-        'crossorigin': ''
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.css",
+        "rel": "stylesheet",
+        "integrity": "sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=",
+        "crossorigin": "",
     },
     {
-        'href': 'https://unpkg.com/leaflet@1.9.2/dist/leaflet.js',
-        'rel': 'stylesheet',
-        'integrity': 'sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=',
-        'crossorigin': ''
-    }
+        "href": "https://unpkg.com/leaflet@1.9.2/dist/leaflet.js",
+        "rel": "stylesheet",
+        "integrity": "sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=",
+        "crossorigin": "",
+    },
 ]
 
 app = Dash(
@@ -44,7 +44,8 @@ app = Dash(
         dbc.themes.FLATLY,
         dbc.icons.FONT_AWESOME,
         "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css",
-    ] + leaflet_external_stylesheets,
+    ]
+    + leaflet_external_stylesheets,
     title="spillthebeans",
     use_pages=False,  # there seems to be multiple bugs in Dash which prevent pages from working
 )
@@ -70,10 +71,14 @@ def display_page(pathname):
         return WtgviewerAIO(
             model=json.load(open("assets/models/windturbine.json", "r")),
             map={
-                "center":{"id":"center", "lat":52.29733, "lng":2.35038},
-                "turbines":{"positions":json.load(open("assets/models/ea1_turbines.json", "r"))},
-                "boundary":{"positions":json.load(open("assets/models/ea1_boundary.json", "r"))}
-            }
+                "center": {"id": "center", "lat": 52.29733, "lng": 2.35038},
+                "turbines": {
+                    "positions": json.load(open("assets/models/ea1_turbines.json", "r"))
+                },
+                "boundary": {
+                    "positions": json.load(open("assets/models/ea1_boundary.json", "r"))
+                },
+            },
         )
     else:
         return PagenotfoundThreejsAIO()

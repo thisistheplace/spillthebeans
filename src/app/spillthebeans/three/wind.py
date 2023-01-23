@@ -7,7 +7,7 @@ from dash_wtgviewer import DashWtgviewer
 from .ids import Ids
 from ..layout.toast import make_toast
 
-from spillthebeans.layout.socials import home
+from spillthebeans.layout.socials import home, github
 
 
 class WtgviewerAIO(html.Div):
@@ -18,7 +18,13 @@ class WtgviewerAIO(html.Div):
 
     # Define the arguments of the All-in-One component
     def __init__(
-        self, model, map, aio_id: str | None = None, tooltip=True, environment=True, show_map=True
+        self,
+        model,
+        map,
+        aio_id: str | None = None,
+        tooltip=True,
+        environment=True,
+        show_map=True,
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 
@@ -35,24 +41,21 @@ class WtgviewerAIO(html.Div):
                         environment=environment,
                         model=model,
                         map=map,
-                        show_map=show_map
+                        show_map=show_map,
                     ),
-                    style={
-                        "width":"100vw",
-                        "height":"100vh"
-                    }
+                    style={"width": "100vw", "height": "100vh"},
                 ),
                 make_toast(
                     "toast",
                     "click on a wind turbine location to view in 3D",
                     "hint",
-                    icon="success"
+                    icon="success",
                 ),
                 home(),
                 html.Div(
                     children=[
                         html.H1("wind farm viewer"),
-                        html.H4("React component to visualise wind turbine data"),
+                        html.H4("Dash/React component to visualise wind turbine data"),
                     ],
                     style={
                         "zIndex": "30",
@@ -65,6 +68,14 @@ class WtgviewerAIO(html.Div):
                 ),
                 html.Div(
                     [
+                        github(
+                            "https://github.com/thisistheplace/dash-wtgviewer",
+                            style={
+                                "margin":"10px",
+                                "top": "0px",
+                                "left": "0px"
+                            }
+                        ),
                         dbc.Switch(
                             id=self.ids.map_toggle(aio_id),
                             label="map",
@@ -79,7 +90,7 @@ class WtgviewerAIO(html.Div):
                             id=self.ids.tooltip_toggle(aio_id),
                             label="tooltip",
                             value=True,
-                        )
+                        ),
                     ],
                     style={
                         "zIndex": "30",
@@ -89,7 +100,7 @@ class WtgviewerAIO(html.Div):
                         "position": "absolute",
                         "display": "block",
                     },
-                )
+                ),
             ],
             style={"height": "100vh", "width": "100vw"},
         )
@@ -101,7 +112,6 @@ class WtgviewerAIO(html.Div):
     )
     def toggle_map(toggle):
         return toggle
-
 
     @callback(
         Output(ids.wind(MATCH), "environment"),
