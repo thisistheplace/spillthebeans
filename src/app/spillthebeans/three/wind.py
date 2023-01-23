@@ -18,7 +18,7 @@ class WtgviewerAIO(html.Div):
 
     # Define the arguments of the All-in-One component
     def __init__(
-        self, model, map, aio_id: str | None = None, tooltip=True, sea=True, show_map=True
+        self, model, map, aio_id: str | None = None, tooltip=True, environment=True, show_map=True
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 
@@ -32,7 +32,7 @@ class WtgviewerAIO(html.Div):
                     DashWtgviewer(
                         id=self.ids.wind(aio_id),
                         tooltip=tooltip,
-                        sea=sea,
+                        environment=environment,
                         model=model,
                         map=map,
                         show_map=show_map
@@ -104,7 +104,7 @@ class WtgviewerAIO(html.Div):
 
 
     @callback(
-        Output(ids.wind(MATCH), "sea"),
+        Output(ids.wind(MATCH), "environment"),
         Input(ids.env_toggle(MATCH), "value"),
         prevent_initial_call=True,
     )
