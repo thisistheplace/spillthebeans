@@ -26,3 +26,13 @@ class Ids:
         "subcomponent": "map_toggle",
         "aio_id": aio_id,
     }
+    env_toggle = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "env_toggle",
+        "aio_id": aio_id,
+    }
+    tooltip_toggle = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "tooltip_toggle",
+        "aio_id": aio_id,
+    }

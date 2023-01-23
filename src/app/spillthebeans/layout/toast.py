@@ -1,14 +1,15 @@
 import dash_bootstrap_components as dbc
 
 
-def make_toast(id: str, header: str):
+def make_toast(id: str, children: object, header: str, open=True, icon="primary", duration=2000):
     return dbc.Toast(
         id=id,
+        children=children,
         header=header,
-        is_open=False,
+        is_open=open,
         dismissable=True,
-        icon="danger",
-        # duration=6000,
+        icon=icon,
+        duration=duration,
         # top: 66 positions the toast below the navbar
         style={
             "position": "fixed",

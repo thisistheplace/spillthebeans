@@ -5,6 +5,7 @@ import uuid
 from dash_wtgviewer import DashWtgviewer
 
 from .ids import Ids
+from ..layout.toast import make_toast
 
 from spillthebeans.layout.socials import home
 
@@ -41,6 +42,12 @@ class WtgviewerAIO(html.Div):
                         "height":"100vh"
                     }
                 ),
+                make_toast(
+                    "toast",
+                    "click on a wind turbine location to view in 3D",
+                    "hint",
+                    icon="success"
+                ),
                 home(),
                 html.Div(
                     children=[
@@ -48,7 +55,7 @@ class WtgviewerAIO(html.Div):
                         html.H4("React component to visualise wind turbine data"),
                     ],
                     style={
-                        "zIndex": "10",
+                        "zIndex": "30",
                         "left": "0px",
                         "bottom": "0px",
                         "margin": "20px",
@@ -57,13 +64,25 @@ class WtgviewerAIO(html.Div):
                     },
                 ),
                 html.Div(
-                    dbc.Switch(
-                        id=self.ids.map_toggle(aio_id),
-                        label="View map",
-                        value=True,
-                    ),
+                    [
+                        dbc.Switch(
+                            id=self.ids.map_toggle(aio_id),
+                            label="map",
+                            value=True,
+                        ),
+                        dbc.Switch(
+                            id=self.ids.env_toggle(aio_id),
+                            label="environment",
+                            value=True,
+                        ),
+                        dbc.Switch(
+                            id=self.ids.tooltip_toggle(aio_id),
+                            label="tooltip",
+                            value=True,
+                        )
+                    ],
                     style={
-                        "zIndex": "100",
+                        "zIndex": "30",
                         "right": "0px",
                         "top": "0px",
                         "margin": "20px",
@@ -75,6 +94,22 @@ class WtgviewerAIO(html.Div):
             style={"height": "100vh", "width": "100vw"},
         )
 
+    @callback(
+        Output(ids.wind(MATCH), "tooltip"),
+        Input(ids.tooltip_toggle(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def toggle_map(toggle):
+        return toggle
+
+
+    @callback(
+        Output(ids.wind(MATCH), "sea"),
+        Input(ids.env_toggle(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def toggle_map(toggle):
+        return toggle
 
     @callback(
         Output(ids.wind(MATCH), "show_map"),
