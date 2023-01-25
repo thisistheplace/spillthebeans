@@ -9,6 +9,8 @@ from ..layout.toast import make_toast
 
 from spillthebeans.layout.socials import home, github
 
+STYLE_VISIBLE = {'display': 'block'}
+STYLE_HIDDEN = {'display': 'none'}
 
 class WtgviewerAIO(html.Div):
     """Holder for full page layout"""
@@ -25,6 +27,7 @@ class WtgviewerAIO(html.Div):
         tooltip=True,
         environment=True,
         show_map=True,
+        stats=False
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 
@@ -42,6 +45,7 @@ class WtgviewerAIO(html.Div):
                         model=model,
                         map=map,
                         show_map=show_map,
+                        stats=stats
                     ),
                     style={"width": "100vw", "height": "100vh"},
                 ),
@@ -79,17 +83,25 @@ class WtgviewerAIO(html.Div):
                         dbc.Switch(
                             id=self.ids.map_toggle(aio_id),
                             label="map",
-                            value=True,
+                            value=show_map,
                         ),
                         dbc.Switch(
                             id=self.ids.env_toggle(aio_id),
                             label="environment",
-                            value=True,
+                            value=environment,
+                            style=STYLE_HIDDEN if show_map else STYLE_VISIBLE
                         ),
                         dbc.Switch(
                             id=self.ids.tooltip_toggle(aio_id),
                             label="tooltip",
-                            value=True,
+                            value=tooltip,
+                            style=STYLE_HIDDEN if show_map else STYLE_VISIBLE
+                        ),
+                        dbc.Switch(
+                            id=self.ids.stats_toggle(aio_id),
+                            label="stats",
+                            value=stats,
+                            style=STYLE_HIDDEN if show_map else STYLE_VISIBLE
                         ),
                     ],
                     style={
@@ -106,11 +118,19 @@ class WtgviewerAIO(html.Div):
         )
 
     @callback(
+        Output(ids.wind(MATCH), "stats"),
+        Input(ids.stats_toggle(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def toggle_stats(toggle):
+        return toggle
+
+    @callback(
         Output(ids.wind(MATCH), "tooltip"),
         Input(ids.tooltip_toggle(MATCH), "value"),
         prevent_initial_call=True,
     )
-    def toggle_map(toggle):
+    def toggle_tooltip(toggle):
         return toggle
 
     @callback(
@@ -118,7 +138,7 @@ class WtgviewerAIO(html.Div):
         Input(ids.env_toggle(MATCH), "value"),
         prevent_initial_call=True,
     )
-    def toggle_map(toggle):
+    def toggle_environment(toggle):
         return toggle
 
     @callback(
@@ -135,12 +155,20 @@ class WtgviewerAIO(html.Div):
 
     @callback(
         Output(ids.map_toggle(MATCH), "value"),
+        Output(ids.env_toggle(MATCH), "style"),
+        Output(ids.tooltip_toggle(MATCH), "style"),
+        Output(ids.stats_toggle(MATCH), "style"),
         Input(ids.wind(MATCH), "show_map"),
         State(ids.map_toggle(MATCH), "value"),
         prevent_initial_call=True,
     )
     def monitor_map(show_map, toggle):
-        if show_map != toggle:
-            return show_map
+        if show_map:
+            show_toggles = [STYLE_HIDDEN] * 3
         else:
-            return no_update
+            show_toggles = [STYLE_VISIBLE] * 3
+
+        if show_map != toggle:
+            return [show_map] + show_toggles
+        else:
+            return [no_update] + show_toggles

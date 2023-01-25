@@ -36,3 +36,8 @@ class Ids:
         "subcomponent": "tooltip_toggle",
         "aio_id": aio_id,
     }
+    stats_toggle = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "stats_toggle",
+        "aio_id": aio_id,
+    }
