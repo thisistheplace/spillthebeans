@@ -21,7 +21,7 @@
     height:0;
     transition: opacity 0.5s;
     z-index: 1;
-    visibility: hidden;
+    display: none;
 
 }
 .fadeIn{
@@ -30,7 +30,7 @@
     height:100%;
     transition: opacity 0.5s 0.5s;
     z-index: 10;
-    visibility:visible;
+    display: block;
 
 }
 
