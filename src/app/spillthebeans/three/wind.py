@@ -1,6 +1,7 @@
 from dash import html, callback, Input, Output, MATCH, State, no_update
 import dash_bootstrap_components as dbc
 import uuid
+import json
 
 from dash_wtgviewer import DashWtgviewer
 
@@ -27,7 +28,8 @@ class WtgviewerAIO(html.Div):
         tooltip=True,
         environment=True,
         show_map=True,
-        stats=False
+        stats=False,
+        results=False
     ):
         """WtgviewAIO is an All-In-One component which holds a threejs rendering of a wind turbine"""
 
@@ -103,6 +105,12 @@ class WtgviewerAIO(html.Div):
                             value=stats,
                             style=STYLE_HIDDEN if show_map else STYLE_VISIBLE
                         ),
+                        dbc.Switch(
+                            id=self.ids.results_toggle(aio_id),
+                            label="results",
+                            value=results,
+                            style=STYLE_HIDDEN if show_map else STYLE_VISIBLE
+                        ),
                     ],
                     style={
                         "zIndex": "30",
@@ -124,6 +132,17 @@ class WtgviewerAIO(html.Div):
     )
     def toggle_stats(toggle):
         return toggle
+
+    @callback(
+        Output(ids.wind(MATCH), "results"),
+        Input(ids.results_toggle(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def toggle_results(toggle):
+        if toggle:
+            return json.load(open("assets/models/ea1_results.json", "r"))
+        else:
+            return {}
 
     @callback(
         Output(ids.wind(MATCH), "tooltip"),
@@ -158,15 +177,16 @@ class WtgviewerAIO(html.Div):
         Output(ids.env_toggle(MATCH), "style"),
         Output(ids.tooltip_toggle(MATCH), "style"),
         Output(ids.stats_toggle(MATCH), "style"),
+        Output(ids.results_toggle(MATCH), "style"),
         Input(ids.wind(MATCH), "show_map"),
         State(ids.map_toggle(MATCH), "value"),
         prevent_initial_call=True,
     )
     def monitor_map(show_map, toggle):
         if show_map:
-            show_toggles = [STYLE_HIDDEN] * 3
+            show_toggles = [STYLE_HIDDEN] * 4
         else:
-            show_toggles = [STYLE_VISIBLE] * 3
+            show_toggles = [STYLE_VISIBLE] * 4
 
         if show_map != toggle:
             return [show_map] + show_toggles

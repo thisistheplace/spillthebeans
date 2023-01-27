@@ -41,3 +41,8 @@ class Ids:
         "subcomponent": "stats_toggle",
         "aio_id": aio_id,
     }
+    results_toggle = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "results_toggle",
+        "aio_id": aio_id,
+    }
