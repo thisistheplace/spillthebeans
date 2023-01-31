@@ -12,6 +12,7 @@ from spillthebeans.layout.socials import home, github
 
 STYLE_VISIBLE = {'display': 'block'}
 STYLE_HIDDEN = {'display': 'none'}
+STYLE_MARGIN = {'margin': '10px'}
 
 class WtgviewerAIO(html.Div):
     """Holder for full page layout"""
@@ -72,6 +73,24 @@ class WtgviewerAIO(html.Div):
                         "display": "block",
                     },
                 ),
+                dbc.Container(
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H6("Change colorscale limits:", className="card-subtitle", style=STYLE_MARGIN),
+                                dbc.InputGroup(
+                                    [
+                                        dbc.Input(id=self.ids.minimum(aio_id), placeholder="minimum", type="number", style=STYLE_MARGIN),
+                                        dbc.Input(id=self.ids.maximum(aio_id), placeholder="maximum", type="number", style=STYLE_MARGIN)
+                                    ]
+                                ),
+                                dbc.Button("set", id=self.ids.set_limits(aio_id), style=STYLE_MARGIN)
+                            ]
+                        ),
+                    ),
+                    id=self.ids.show_limits_input(aio_id),
+                    class_name="hidden"
+                ),
                 html.Div(
                     [
                         github(
@@ -124,6 +143,32 @@ class WtgviewerAIO(html.Div):
             ],
             style={"height": "100vh", "width": "100vw"},
         )
+
+    @callback(
+        Output(ids.wind(MATCH), "colorscale"),
+        Input(ids.set_limits(MATCH), "n_clicks"),
+        State(ids.minimum(MATCH), "value"),
+        State(ids.maximum(MATCH), "value"),
+        prevent_initial_call=True,
+    )
+    def set_min_max(n, min, max):
+        return {
+            "visible": True,
+            "limits": {
+                "min": min,
+                "max": max
+            }
+        }
+
+    @callback(
+        Output(ids.show_limits_input(MATCH), "class_name"),
+        Input(ids.wind(MATCH), "colorscale_clicked"),
+        prevent_initial_call=True,
+    )
+    def show_min_max(show_viewer):
+        if show_viewer:
+            return "colorscale-input"
+        return "hidden"
 
     @callback(
         Output(ids.wind(MATCH), "stats"),

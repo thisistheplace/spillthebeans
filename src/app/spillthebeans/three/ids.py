@@ -46,3 +46,23 @@ class Ids:
         "subcomponent": "results_toggle",
         "aio_id": aio_id,
     }
+    set_limits = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "set_limits",
+        "aio_id": aio_id,
+    }
+    show_limits_input = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "show_limits_input",
+        "aio_id": aio_id,
+    }
+    minimum = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "minimum",
+        "aio_id": aio_id,
+    }
+    maximum = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "maximum",
+        "aio_id": aio_id,
+    }

@@ -3,6 +3,20 @@
     margin: 5px;
 }
 
+.hidden {
+    display: none;
+}
+
+.colorscale-input {
+    z-index: 30;
+    left: 25%;
+    top: 40%;
+    width: 50%;
+    margin: 20px;
+    position: absolute;
+    display: block;
+}
+
 @media screen and (max-width: 900px) {
     .portfolio-card {
         width: 40% !important;
@@ -12,6 +26,15 @@
 @media screen and (max-width: 400px) {
     .portfolio-card {
         width: 100% !important;
+    }
+    .colorscale-input {
+        z-index: 30;
+        left: 10%;
+        top: 30%;
+        width: 80%;
+        margin: 20px;
+        position: absolute;
+        display: block;
     }
 }
 
@@ -48,6 +71,7 @@
     height: 100%;
     width: 2vh;
     margin: 1px;
+    cursor: pointer;
 }
 
 .grad-step {
