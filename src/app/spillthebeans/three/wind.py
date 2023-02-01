@@ -53,7 +53,7 @@ class WtgviewerAIO(html.Div):
                     style={"width": "100vw", "height": "100vh"},
                 ),
                 make_toast(
-                    "toast",
+                    self.ids.toast_wind(aio_id),
                     "click on a wind turbine location to view in 3D",
                     "hint",
                     icon="success",
@@ -73,23 +73,22 @@ class WtgviewerAIO(html.Div):
                         "display": "block",
                     },
                 ),
-                dbc.Container(
-                    dbc.Card(
-                        dbc.CardBody(
+                dbc.Offcanvas(
+                    [
+                        dbc.InputGroup(
                             [
-                                html.H6("Change colorscale limits:", className="card-subtitle", style=STYLE_MARGIN),
-                                dbc.InputGroup(
-                                    [
-                                        dbc.Input(id=self.ids.minimum(aio_id), placeholder="minimum", type="number", style=STYLE_MARGIN),
-                                        dbc.Input(id=self.ids.maximum(aio_id), placeholder="maximum", type="number", style=STYLE_MARGIN)
-                                    ]
-                                ),
-                                dbc.Button("set", id=self.ids.set_limits(aio_id), style=STYLE_MARGIN)
+                                dbc.Input(id=self.ids.minimum(aio_id), placeholder="minimum", type="number", style=STYLE_MARGIN),
+                                dbc.Input(id=self.ids.maximum(aio_id), placeholder="maximum", type="number", style=STYLE_MARGIN)
                             ]
                         ),
-                    ),
+                        dbc.Button("set", id=self.ids.set_limits(aio_id), style=STYLE_MARGIN)
+                    ],
                     id=self.ids.show_limits_input(aio_id),
-                    class_name="hidden"
+                    class_name="colorscale-input",
+                    is_open=False,
+                    close_button=True,
+                    backdrop=False,
+                    title="Change colorscale limits:"
                 ),
                 html.Div(
                     [
@@ -146,29 +145,35 @@ class WtgviewerAIO(html.Div):
 
     @callback(
         Output(ids.wind(MATCH), "colorscale"),
+        Output(ids.toast_wind(MATCH), "is_open"),
+        Output(ids.toast_wind(MATCH), "children"),
+        Output(ids.toast_wind(MATCH), "icon"),
         Input(ids.set_limits(MATCH), "n_clicks"),
         State(ids.minimum(MATCH), "value"),
         State(ids.maximum(MATCH), "value"),
+        State(ids.wind(MATCH), "colorscale"),
         prevent_initial_call=True,
     )
-    def set_min_max(n, min, max):
+    def set_min_max(n, min, max, current):
+        if min is None or max is None:
+            return no_update, True, "Please set both minimum and maximum values!", "danger"
         return {
             "visible": True,
             "limits": {
                 "min": min,
                 "max": max
             }
-        }
+        }, no_update, no_update, no_update
 
     @callback(
-        Output(ids.show_limits_input(MATCH), "class_name"),
+        Output(ids.show_limits_input(MATCH), "is_open"),
         Input(ids.wind(MATCH), "colorscale_clicked"),
         prevent_initial_call=True,
     )
     def show_min_max(show_viewer):
         if show_viewer:
-            return "colorscale-input"
-        return "hidden"
+            return True
+        return False
 
     @callback(
         Output(ids.wind(MATCH), "stats"),

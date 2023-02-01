@@ -66,3 +66,8 @@ class Ids:
         "subcomponent": "maximum",
         "aio_id": aio_id,
     }
+    toast_wind = lambda aio_id: {
+        "component": "WtgviewerAIO",
+        "subcomponent": "toast_wind",
+        "aio_id": aio_id,
+    }

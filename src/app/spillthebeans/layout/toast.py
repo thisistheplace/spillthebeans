@@ -2,7 +2,7 @@ import dash_bootstrap_components as dbc
 
 
 def make_toast(
-    id: str, children: object, header: str, open=True, icon="primary", duration=2000
+    id: str, children: object, header: str, open=True, icon="primary", duration=4000
 ):
     return dbc.Toast(
         id=id,
