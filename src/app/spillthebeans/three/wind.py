@@ -145,9 +145,9 @@ class WtgviewerAIO(html.Div):
 
     @callback(
         Output(ids.wind(MATCH), "colorscale"),
-        Output(ids.toast_wind(MATCH), "is_open"),
-        Output(ids.toast_wind(MATCH), "children"),
-        Output(ids.toast_wind(MATCH), "icon"),
+        # Output(ids.toast_wind(MATCH), "is_open"),
+        # Output(ids.toast_wind(MATCH), "children"),
+        # Output(ids.toast_wind(MATCH), "icon"),
         Input(ids.set_limits(MATCH), "n_clicks"),
         State(ids.minimum(MATCH), "value"),
         State(ids.maximum(MATCH), "value"),
@@ -155,15 +155,15 @@ class WtgviewerAIO(html.Div):
         prevent_initial_call=True,
     )
     def set_min_max(n, min, max, current):
-        if min is None or max is None:
-            return no_update, True, "Please set both minimum and maximum values!", "danger"
+        # if min is None or max is None:
+        #     return no_update, True, "Please set both minimum and maximum values!", "danger"
         return {
             "visible": True,
             "limits": {
                 "min": min,
                 "max": max
             }
-        }, no_update, no_update, no_update
+        }#, no_update, no_update, no_update
 
     @callback(
         Output(ids.show_limits_input(MATCH), "is_open"),
